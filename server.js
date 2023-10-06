@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import session from 'express-session';
+import flash from "connect-flash";
 import route from './routes/routes.js';
 import { dbConnection } from './models/User.js';
 
@@ -29,6 +30,14 @@ app.use(session({
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.flash_success = req.flash("success");
+  res.locals.flash_error = req.flash("error");
+  next();
+});
 
 // ==========
 // App routers
