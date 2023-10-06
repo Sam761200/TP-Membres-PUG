@@ -1,0 +1,24 @@
+//- views/dashboard.pug
+
+extends layouts/frontend
+
+block content
+  .ui.container
+    h1.ui.header Tableau de Bord
+
+    .ui.segment
+      h4 Informations de l'utilisateur
+
+      p
+        strong Prénom : 
+        | #{firstName}
+
+      p
+        strong Nom : 
+        | #{lastName}
+
+      p
+        strong Email : 
+        | #{email}
+
+      a.ui.button(href="/logout") Se déconnecter

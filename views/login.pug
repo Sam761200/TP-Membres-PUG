@@ -1,0 +1,28 @@
+extends layouts/frontend
+
+include includes/_mixins
+
+block head
+  //- Injectez ici JS et les styles pour cette page spécifique
+
+block content
+  .ui.middle.aligned.center.aligned.grid
+    .sixteen.wide.ten.wide.tablet.seven.wide.computer.column
+      h1 Connexion
+
+      //- Affichez les messages flash d'erreur si existants
+      if flash_error
+        .ui.red.message
+          each message in flash_error
+            p= message
+
+      form.ui.large.form(method="post" action="/login")
+        .ui.segment
+          +field('email', 'email', 'your.email@address.tld')
+          +field('password', 'password', 'Password')
+          button(type="submit").ui.fluid.large.teal.submit.button
+            | Se connecter
+
+        // Lien vers la page d'inscription pour ceux qui n'ont pas encore de compte
+        p Pas encore inscrit ? 
+          a(href="/register") Inscrivez-vous
